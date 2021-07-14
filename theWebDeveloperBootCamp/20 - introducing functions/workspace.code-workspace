@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\colt steele"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "theWebDeveloperBootCamp"
+	}
+}

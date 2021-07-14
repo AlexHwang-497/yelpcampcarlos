@@ -1,0 +1,64 @@
+<!-- this links to your boilerplate -->
+<% layout('layouts/boilerplate.ejs')%>
+
+<!-- this was taken from bootstrp, this is the kitchen sink card -->
+<div class="row">
+    <!-- col-6 offset-3; was orignally in the class, the offset-3 wil ceter the page -->
+    <div class="col-6">
+          <div class="card mb-3">
+              <img src="<%= campground.image%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= campground.title %></h5>
+                <p class="card-text"><%= campground.description %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <!-- text is muted here -->
+                <li class="list-group-item text-muted"><%= campground.location %></li>
+                <li class="list-group-item">$<%= campground.price %>/night</li>
+              </ul>
+              <div class="card-body">
+                  <!-- we make the button here -->
+                <a class= 'card-link btn btn-warning' href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                <!-- d-inline makes the buttons horizontal -->
+                <form  class= 'd-inline' action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <button class ='btn btn-danger'>DELETE</button>
+                </form>
+              </div>
+            </div>
+            <!-- everything below here is invoved with leaving the review on the property -->
+            <h2>Leave a Review</h2>
+            <!-- mb-3 creates a margin botttom, novalidate means you don't want the html to validate the forms -->
+            <!-- the validated form in this case what it does, is if you leave the review blank, it won't allow you to submit -->
+            <form action="/campgrounds/<%= campground._id%>/reviews" method = 'POST' class='mb-3 validated-form' novalidate>
+              <div class="mb-3">
+                <label class='form-label' for="body">Rating</label>
+                <!-- this creates the scroll bar for rating -->
+                <input class="form-range" type='range' min='1' max='5' id="rating" name='review[rating]'>
+              </div>
+              <div class="mb-3">
+                <!-- bootstrap thing for form-label -->
+                <label class='form-label' for="body">Review</label>
+                <!-- form-control is a bootstrap thing -->
+                <textarea class='form-control' name="review[body]" id="" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <button class='btn btn-success'>Submit</button>
+            </form>
+            <!-- this will show all the comments that were made about this specific property -->
+            <% for(let review of campground.reviews) { %>
+              <!-- this separates the comments -->
+              <div class="card mb-3">
+                <!-- card body will give padding to the comments -->
+                <div class="card-body">
+                  <h5 class="card-title">Rating: <%= review.rating%></h5>
+                  <p class="card-text">Review: <%= review.body%></p>
+  
+                  <!-- <p>Rating: <%= review.rating%></p> -->
+                  <!-- <p>Review: <%= review.body%></p> -->
+                </div>
+              </div>
+            <% } %>
+      </div>
+  </div>

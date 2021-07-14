@@ -1,0 +1,105 @@
+<!-- this links to your boilerplate -->
+<% layout('layouts/boilerplate.ejs')%>
+
+<!-- this is for the stars layout -->
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<!-- this was taken from bootstrp, this is the kitchen sink card -->
+<div class="row">
+    <!-- col-6 offset-3; was orignally in the class, the offset-3 wil ceter the page -->
+    <div class="col-6">
+          <div class="card mb-3">
+              <img src="<%= campground.image%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= campground.title %></h5>
+                <p class="card-text"><%= campground.description %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <!-- text is muted here -->
+                <li class="list-group-item text-muted"><%= campground.location %></li>
+                <li class="list-group-item">Submitted by <%= campground.author.username%></li>
+                <li class="list-group-item">$<%= campground.price %>/night</li>
+              </ul>
+              <!-- if the campgournds author = current users id then render the buttons -->
+              <!-- the buttons to edit will show up if you are logged in and it is the property you created -->
+              <%  if( currentUser && campground.author.equals(currentUser._id))  {%>
+              <div class="card-body">
+                  <!-- we make the button here -->
+                <a class= 'card-link btn btn-warning' href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                <!-- d-inline makes the buttons horizontal -->
+                <form  class= 'd-inline' action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <button class ='btn btn-danger'>DELETE</button>
+                </form>
+              </div>
+              <% } %>
+            </div>
+            
+          </div>
+          <!-- haing this col- 6 here moves all the review info to the right -->
+          <div class="col-6">
+            <!-- what we have done here is we hide the form if no one is logged in -->
+            <% if(currentUser){ %>
+            <!-- everything below here is invoved with leaving the review on the property -->
+            <h2>Leave a Review</h2>
+            <!-- mb-3 creates a margin botttom, novalidate means you don't want the html to validate the forms -->
+            <!-- the validated form in this case what it does, is if you leave the review blank, it won't allow you to submit -->
+            <form action="/campgrounds/<%= campground._id%>/reviews" method = 'POST' class='mb-3 validated-form' novalidate>
+              <!-- <div class="mb-3"> -->
+                <!-- <label class='form-label' for="body">Rating</label> -->
+                <!-- this creates the scroll bar for rating -->
+                <!-- <input class="form-range" type='range' min='1' max='5' id="rating" name='review[rating]'> -->
+              <!-- </div> -->
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          
+
+
+              <div class="mb-3">
+                <!-- bootstrap thing for form-label -->
+                <label class='form-label' for="body">Review</label>
+                <!-- form-control is a bootstrap thing -->
+                <textarea class='form-control' name="review[body]" id="" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+              </div>
+              <button class='btn btn-success'>Submit</button>
+            </form>
+            <% } %>
+            <!-- this will show all the comments that were made about this specific property -->
+            <% for(let review of campground.reviews) { %>
+              <!-- this separates the comments -->
+              <div class="card mb-3">
+                <!-- card body will give padding to the comments -->
+                <div class="card-body">
+                  <h5 class="card-title">Rating: <%= review.rating%></h5>
+                  <!-- <h5>	&#9733;	&#9733;	&#9733;	&#9733;</h5> -->
+                  <p class='starability-result' data-rating="<%=review.rating%>">Rated: <%= review.rating %> stars</p>
+                  
+                  <p class="card-text">Review: <%= review.body%></p>
+                  <!-- this will hide the delete button for  -->
+                  
+
+                  <!-- this deals with the deleting of the reiviews, it will put a delete button on each review entry -->
+                  <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                    <!-- this creates the delete button -->
+                    <button class = 'btn btn-small btn-danger'>Delete</button>
+                  </form>
+                  
+                </div>
+              </div>
+            <% } %>
+          </div>
+  </div>

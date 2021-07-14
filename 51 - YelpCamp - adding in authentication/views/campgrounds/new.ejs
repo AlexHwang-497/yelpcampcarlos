@@ -1,0 +1,74 @@
+
+<% layout('layouts/boilerplate.ejs')%>
+    <!-- this will be sending a post request here -->
+
+
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        <!-- novalidate means that the form should not be validated when submitted -->
+        <form action="/campgrounds" method= 'POST' novalidate class="validated-form">
+            <!-- this creates a margin / spce between the input boxes -->
+            <div class ='mb-3'>
+                <label class="form-label" for='title'>Title</label>
+                <!-- this makes the input section bigger and longer -->
+                <!-- required, will force the user to fillout the input box -->
+                <input class="form-control" type='text' id="title" name = 'campground[title]' required>
+                <!-- this provides a message below once you enter your input box -->
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+            
+            <!-- this creates a margin / spce between the input boxes -->
+            <div class ='mb-3'>
+                <label class="form-label" for='location'>Location</label>
+                <!-- this makes the input section bigger and longer -->
+                <!-- required, will force the user to fillout the input box -->
+                <input class="form-control" type='text' id="title" name = 'campground[location]' required>
+                <!-- this provides a message below once you enter your input box -->
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+
+            <!-- this creates a margin / spce between the input boxes -->
+            <div class="mb-3">
+                <label class="form-label" for="price">Campground Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <!-- required, will force the user to fillout the input box -->
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="campground[price]" required>
+                        <!-- this provides a message below once you enter your input box -->
+                        <div class="valid-feedback">Looks Good!</div>
+                </div>
+            </div>
+
+            <!-- this creates a margin / spce between the input boxes -->
+            
+            <div class ='mb-3'>
+                <label class="form-label" for='image'>Image URL</label>
+                <!-- this makes the input section bigger and longer -->
+                <!-- required, will force the user to fillout the input box -->
+                <input class="form-control" type='text' id="image" name = 'campground[image]' required>
+                <!-- this provides a message below once you enter your input box -->
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+
+            <!-- this creates a margin / spce between the input boxes -->
+            <div class ='mb-3'>
+                <label class="form-label" for='description'>description </label>
+                <!-- this makes the input section bigger and longer -->
+                <!-- we are using a text area to now allow us to make descriptions on the property -->
+                <textarea class="form-control" type='text' id="description" name = 'campground[description]' required></textarea>
+                <!-- this provides a message below once you enter your input box -->
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+
+            <div class ='mb-3'>
+                <!-- btn success makes the button color green -->
+                <button class = 'btn btn-success'>Add Campground</button>
+            </div>
+        
+        </form>
+        <a href="/campgrounds">All Campgrounds</a>
+    </div>
+</div>
+

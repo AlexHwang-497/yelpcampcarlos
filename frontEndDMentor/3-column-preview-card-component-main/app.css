@@ -1,0 +1,112 @@
+.panel{
+    /* background-color:white;
+    border-radius: 10px;
+    padding:15px 25px;
+    width:100%;
+    display: flex;
+    max-width: 960px;
+    flex-direction: column;
+    text-align: center;
+     */
+
+  width: 85%;
+  margin: 0 auto;
+  display: grid;
+  padding: 3rem 0;
+}
+body{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    min-height: 100vh;
+}
+
+.cars{
+    border-bottom: 1px solid ;
+
+}
+.cars:last-child{
+    background-color: hsl(179, 100%, 13%);
+    
+}
+
+.cars:nth-child(2){
+    background-color: hsl(184, 100%, 22%)
+    
+}
+
+.cars:first-child{
+    background-color: hsl(31, 77%, 52%);
+
+}
+
+h2{
+    color: white;
+}
+p{
+    color: white;
+    
+}
+
+
+img{
+    margin-bottom: 25px;
+    max-width: 100%;
+}
+.button{
+    border: 1px solid white;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: white;
+
+    padding: 1px 35px;
+    text-decoration: none;
+    margin: 25px 0 ;
+
+}
+
+
+@media (min-width: 900px){
+    .panel {
+      flex-direction: row;
+    }
+
+    .cars{
+        border-bottom: none;
+        padding: 25px 50px;
+    }
+    
+  }
+
+  
+
+
+   /* .panel {
+    background-color: orange;
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+
+  @media (min-width: 900px){
+    .panel {
+      flex-direction: row;
+    }
+    .pricing-plan {
+      border-bottom: none;
+      border-right: 1px solid #e1f1ff;
+      padding: 25px 50px;
+    }
+    .pricing-plan:last-child {
+      border-right: none;
+    }
+  }
+   */

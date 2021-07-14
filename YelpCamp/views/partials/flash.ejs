@@ -1,0 +1,22 @@
+
+<!-- this flashes everything related to successes -->
+<% if(success && success.length) {%>
+    <div class="alert alert-success" role='alert'>
+        <!-- this will display our success/flash variable -->
+        <%= success %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% }%>
+
+
+<!-- this flashses everything related to errors -->
+<% if(error && error.length) {%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <% } %>

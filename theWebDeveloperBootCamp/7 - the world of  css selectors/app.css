@@ -1,0 +1,111 @@
+
+* {
+    /* background-color:cyan */
+}
+
+body{
+    background-color:  #f1faee;
+}
+
+button{
+    font-size: 30px;
+    background-color:  #a8dadc;
+
+}
+
+h1,h2 {
+    color: #1d3557;
+}
+#signup {
+    background-color: #1d3557;
+    columns: #f1faee;
+}
+
+span {
+    color: #457b9d;
+}
+.tag{
+    background-color: #e63946;
+    color: #fafaee;
+}
+
+footer a {
+    color: #e63946;
+}
+
+/* adjacent selector */
+h2 + button {
+    font-size: 20px;
+    background: #457b9d;
+    color: white;
+}
+
+/* direct child -selects <li> that are direct children of a <div> */
+/* thi is affecting line 125 */
+footer > a {
+    color: #457b9d;
+}
+
+
+/* this is affecting the password **** */
+input[type='password'] {
+    color: greenyellow;
+}
+
+/* highlights everything in class post */
+section[class='post']{
+    /* background-color: purple; */
+}
+
+a[href*='google']{
+    color:green;
+}
+
+
+/* pseudol classes */
+
+.post button:hover{
+    background-color: #e63946;
+    color: #f1faee
+    font-weight: 700;
+}
+.post a:hover{
+    text-decoration: underline;
+}
+
+.post button:active {
+    background-color: #02c39a;
+}
+
+.post:nth-of-type(2n){
+    background-color: #dfe8dc;
+}
+
+/* pseudo elements */
+h2::first-letter{
+    font-size: 50px;
+}
+
+p::first-line{
+    color: purple;
+}
+
+p::selection{
+    background-color:orange;
+}
+
+
+/* css cascade */
+h1,h2{
+    color: yellow;
+}
+
+.post button:active {
+    background-color: #02c39a;
+}
+
+button:hover{
+    /* specificity */
+    background-color: olivedrab;
+    font-size: 10px;
+}

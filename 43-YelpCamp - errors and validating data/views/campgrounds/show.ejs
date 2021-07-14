@@ -1,0 +1,28 @@
+<!-- this links to your boilerplate -->
+<% layout('layouts/boilerplate.ejs')%>
+
+<!-- this was taken from bootstrp, this is the kitchen sink card -->
+<div class="row">
+    <div class="col-6 offset-3">
+          <div class="card mb-3">
+              <img src="<%= campground.image%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= campground.title %></h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <!-- text is muted here -->
+                <li class="list-group-item text-muted"><%= campground.location %></li>
+                <li class="list-group-item">$<%= campground.price %>/night</li>
+              </ul>
+              <div class="card-body">
+                  <!-- we make the button here -->
+                <a class= 'card-link btn btn-warning' href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                <!-- d-inline makes the buttons horizontal -->
+                <form  class= 'd-inline' action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    <button class ='btn btn-danger'>DELETE</button>
+                </form>
+              </div>
+            </div>
+      </div>
+  </div>
